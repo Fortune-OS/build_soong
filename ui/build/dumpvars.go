@@ -145,22 +145,18 @@ func dumpMakeVars(ctx Context, config Config, goals, vars []string, write_soong_
 
 // Variables to print out in the top banner
 var BannerVars = []string{
+	"FORTUNE_VERSION",
+	"FORTUNE_KEEPER",
+	"FORTUNE_BUILD_TYPE",
 	"PLATFORM_VERSION_CODENAME",
 	"PLATFORM_VERSION",
-	"FORTUNE_VERSION",
-	"PRODUCT_INCLUDE_TAGS",
 	"PRODUCT_SOURCE_ROOT_DIRS",
 	"TARGET_PRODUCT",
 	"PROD_VERSION",
 	"TARGET_BUILD_VARIANT",
-	"TARGET_BUILD_APPS",
 	"TARGET_BUILD_UNBUNDLED",
 	"TARGET_ARCH",
 	"TARGET_ARCH_VARIANT",
-	"TARGET_CPU_VARIANT",
-	"TARGET_2ND_ARCH",
-	"TARGET_2ND_ARCH_VARIANT",
-	"TARGET_2ND_CPU_VARIANT",
 	"HOST_OS",
 	"HOST_OS_EXTRA",
 	"HOST_CROSS_OS",
@@ -179,13 +175,16 @@ var BannerVars = []string{
 func Banner(make_vars map[string]string) string {
 	b := &bytes.Buffer{}
 
-	fmt.Fprintln(b, "============================================")
+	fmt.Fprintln(b, "================================")
+	fmt.Fprintln(b, "█▀▀ █▀█ █▀█ ▀█▀ █░█ █▄░█ █▀▀")
+	fmt.Fprintln(b, "█▀░ █▄█ █▀▄ ░█░ █▄█ █░▀█ ██▄")
+	fmt.Fprintln(b, "================================")
 	for _, name := range BannerVars {
 		if make_vars[name] != "" {
 			fmt.Fprintf(b, "%s=%s\n", name, make_vars[name])
 		}
 	}
-	fmt.Fprint(b, "============================================")
+	fmt.Fprintln(b, "================================")
 
 	return b.String()
 }
